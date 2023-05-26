@@ -17,7 +17,6 @@ public class EnemyHealth : MonoBehaviour
     }
 
     void ProcessHit() {
-        Debug.Log("Enemy hit!");
         currentHitPoints--;
     }
 
