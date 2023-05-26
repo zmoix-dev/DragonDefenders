@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    [SerializeField] GameObject tower;
+    [SerializeField] bool isPlaceable;
+
+    public bool IsPlaceable {
+        get {
+            return isPlaceable;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    GameObject structuresParent;
+
+    void Start() {
+        structuresParent = GameObject.FindWithTag("StructuresParent");
+    }
+
+    void OnMouseDown() {
+        if (isPlaceable) {
+            GameObject placed = Instantiate(tower, transform.position, Quaternion.identity);
+            placed.transform.parent = structuresParent.transform;
+            isPlaceable = false;
+        }
+    }
+
+    bool GetIsPlaceable() {
+        return isPlaceable;
     }
 }
