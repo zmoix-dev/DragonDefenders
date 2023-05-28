@@ -177,6 +177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5666388674889113395}
   - component: {fileID: 3663512342881634336}
+  - component: {fileID: -8366205531921641964}
   m_Layer: 0
   m_Name: Ballista
   m_TagString: Untagged
@@ -216,6 +217,20 @@ MonoBehaviour:
   weapon: {fileID: 5715195124599388414}
   projectiles: {fileID: 7328771054176155899}
   range: 25
+  target: {fileID: 0}
+--- !u!114 &-8366205531921641964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214727828202022804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9486c40d165ae7540a3b9904fe5b72ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 100
 --- !u!1 &6373510100231140279
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +337,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -385,7 +400,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 24
+      scalar: 40
       minScalar: 5
       maxCurve:
         serializedVersion: 2

@@ -7,10 +7,10 @@ public class TowerTargeting : MonoBehaviour
     [SerializeField] Transform weapon;
     [SerializeField] ParticleSystem projectiles;
     [SerializeField] float range = 15f;
-    Transform target;
+    [SerializeField] Transform target;
 
     void Start() {
-        target = GameObject.FindObjectOfType<EnemyMover>().transform;
+        target = GameObject.FindObjectOfType<EnemyHandler>().transform;
     }
     void Update() {
         ProcessTargeting();
@@ -28,11 +28,11 @@ public class TowerTargeting : MonoBehaviour
     }
 
     void FindClosestTarget() {
-        EnemyMover[] enemies = FindObjectsOfType<EnemyMover>();
+        EnemyHandler[] enemies = FindObjectsOfType<EnemyHandler>();
         Transform closestTarget = null;
         float maxDistance = Mathf.Infinity;
 
-        foreach (EnemyMover enemy in enemies) {
+        foreach (EnemyHandler enemy in enemies) {
             float targetDistance = Vector3.Distance(transform.position, enemy.transform.position);
             if (targetDistance < maxDistance) {
                 closestTarget = enemy.transform;
@@ -40,7 +40,7 @@ public class TowerTargeting : MonoBehaviour
             }
         }
         target = closestTarget;
-    }
+    }   
 
     void ProcessAttack() {
         if (target == null) return;
@@ -54,7 +54,8 @@ public class TowerTargeting : MonoBehaviour
     }
 
     void Attack() {
-        weapon.LookAt(target);
+        Vector3 targetAdjustedHeight = target.position + new Vector3(0, target.localScale.y / 2, 0);
+        weapon.LookAt(targetAdjustedHeight);
         if (!projectiles.isEmitting) {
             projectiles.Play();
         }
