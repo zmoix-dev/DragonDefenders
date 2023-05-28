@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyHandler))]
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] int maxHitPoints;
+    [SerializeField][Range(0, 10)] int maxHitPoints;
+
+    [Tooltip("Adds amount to maxHitPoints when enemy slain.")]
+    [SerializeField][Range(0,2)] int scalingHitPoints = 2;
     int currentHitPoints;
 
     EnemyHandler handler;
@@ -30,6 +34,7 @@ public class EnemyHealth : MonoBehaviour
         if (currentHitPoints == 0) {
             gameObject.SetActive(false);
             handler.AwardGold();
+            maxHitPoints += scalingHitPoints;
         }
     }
 }

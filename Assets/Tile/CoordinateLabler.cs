@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 
 [ExecuteAlways]
+[RequireComponent(typeof(TextMeshPro))]
 public class CoordinateLabler : MonoBehaviour
 {
     [SerializeField] Color defaultColor = Color.white;

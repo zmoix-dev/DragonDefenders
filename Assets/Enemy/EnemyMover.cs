@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyHandler))]
 public class EnemyMover : MonoBehaviour
 {
 
@@ -13,7 +14,6 @@ public class EnemyMover : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        FindPath();
         ReturnToStart();
         StartCoroutine(TraversePath());
     }
@@ -23,8 +23,11 @@ public class EnemyMover : MonoBehaviour
     }
 
     void ReturnToStart() {
-        transform.position = path[0].transform.position;
-        path.RemoveAt(0);
+        FindPath();
+        if (path.Count > 0) {
+            transform.position = path[0].transform.position;
+            path.RemoveAt(0);
+        }
     }
 
     void FindPath() {
@@ -32,7 +35,10 @@ public class EnemyMover : MonoBehaviour
 
         GameObject pathParent = GameObject.FindGameObjectWithTag("Path");
         foreach (Transform waypoint in pathParent.transform) {
-            path.Add(waypoint.GetComponent<Waypoint>());
+            Waypoint way = waypoint.GetComponent<Waypoint>();
+            if (way != null) {
+                path.Add(way);
+            }
         }
     }
 
@@ -49,6 +55,10 @@ public class EnemyMover : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
+        FinishPath();
+    }
+
+    void FinishPath() {
         handler.StealGold();
         gameObject.SetActive(false);
     }

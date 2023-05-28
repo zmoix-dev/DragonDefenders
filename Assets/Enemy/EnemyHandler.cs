@@ -22,6 +22,6 @@ public class EnemyHandler : MonoBehaviour
 
     public void StealGold() {
         if (bank == null) { return; }
-        bank.Withdraw(goldPenalty);
+        bank.Withdraw(goldPenalty, true);
     }
 }
