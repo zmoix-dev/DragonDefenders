@@ -48,11 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d0e62c1862ee1449ad6645f2bc62a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  path: []
   speed: 1
 --- !u!114 &2401225801578736157
 MonoBehaviour:
@@ -67,6 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHitPoints: 2
+  scalingHitPoints: 2
 --- !u!136 &6301667281270067360
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -93,6 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e48c139dbf97742998584b5e20fa3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldReward: 25
+  goldPenalty: 25
 --- !u!1001 &556274355111708229
 PrefabInstance:
   m_ObjectHideFlags: 0
