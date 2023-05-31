@@ -55,9 +55,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5090079954546366098, guid: 67f5200b4a06f8e4692b1e5259fdd5fb, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090079954546366098, guid: 67f5200b4a06f8e4692b1e5259fdd5fb, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6047741191254655101, guid: 67f5200b4a06f8e4692b1e5259fdd5fb, type: 3}
       propertyPath: m_Name
       value: Tile_Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820516373292417164, guid: 67f5200b4a06f8e4692b1e5259fdd5fb, type: 3}
+      propertyPath: isPlaceable
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67f5200b4a06f8e4692b1e5259fdd5fb, type: 3}
