@@ -20,26 +20,22 @@ public class CoordinateLabler : MonoBehaviour
 
     void Awake() {
         gridManager = FindObjectOfType<GridManager>();
-        
         label = GetComponent<TextMeshPro>();
-        DisplayCoordinates();
         label.enabled = false;
     }
 
     void Start() {
         if (gridManager) {
             coordinates = gridManager.GetCoordinatesFromPosition(transform.parent.position);
+            DisplayCoordinates();
+            UpdateObjectName();
         }
     }
 
     void Update()
     {
-        if (!Application.isPlaying) {
-            DisplayCoordinates();
-            UpdateObjectName();
-        }
-        ColorCoordinates();
         ToggleLabels();
+        ColorCoordinates();
     }
 
     void ToggleLabels() {
@@ -50,6 +46,7 @@ public class CoordinateLabler : MonoBehaviour
 
     void DisplayCoordinates() {
         if (gridManager == null) {
+            Debug.Log("Coordinate Labeler could not find Grid Manager.");
             return;
         }
         label.text = $"{coordinates.x},{coordinates.y}";
