@@ -15,7 +15,9 @@ public class TowerHandler : MonoBehaviour
 
         if(bank != null && bank.Withdraw(cost)) {
             TowerHandler placed = Instantiate(tower, position, Quaternion.identity);
-            placed.transform.parent = structuresParent.transform;    
+            if (placed != null) {
+                placed.transform.parent = structuresParent.transform;    
+            }
             return true;
         }
         return false;

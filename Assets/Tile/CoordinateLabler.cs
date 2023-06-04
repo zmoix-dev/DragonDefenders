@@ -8,17 +8,28 @@ using TMPro;
 public class CoordinateLabler : MonoBehaviour
 {
     [SerializeField] Color defaultColor = Color.white;
-    [SerializeField] Color blockedColor = Color.red;
-
+    [SerializeField] Color walkableBlockedColor = Color.red;
+    [SerializeField] Color structureBlockedColor = Color.black;
+    [SerializeField] Color pathColor = Color.blue;
+    [SerializeField] Color exploredColor = new Color(1f, 0.5f, 0f);
     TextMeshPro label;
-    Vector2Int coordinates = new Vector2Int();
-    Waypoint waypoint;
+
+    GridManager gridManager;
+    Vector2Int coordinates;
+
 
     void Awake() {
+        gridManager = FindObjectOfType<GridManager>();
+        
         label = GetComponent<TextMeshPro>();
         DisplayCoordinates();
-        waypoint = GetComponentInParent<Waypoint>();
         label.enabled = false;
+    }
+
+    void Start() {
+        if (gridManager) {
+            coordinates = gridManager.GetCoordinatesFromPosition(transform.parent.position);
+        }
     }
 
     void Update()
@@ -38,8 +49,9 @@ public class CoordinateLabler : MonoBehaviour
     }
 
     void DisplayCoordinates() {
-        coordinates.x = Mathf.RoundToInt(transform.parent.position.x / UnityEditor.EditorSnapSettings.move.x);
-        coordinates.y = Mathf.RoundToInt(transform.parent.position.z / UnityEditor.EditorSnapSettings.move.z);
+        if (gridManager == null) {
+            return;
+        }
         label.text = $"{coordinates.x},{coordinates.y}";
     }
 
@@ -48,10 +60,23 @@ public class CoordinateLabler : MonoBehaviour
     }
 
     void ColorCoordinates() {
-        if (waypoint.IsPlaceable) {
-            label.color = defaultColor;
+        if (gridManager == null) {
+            return;
+        }
+        Node n = gridManager.GetNode(coordinates);
+        if (n == null) {
+            return;
+        }
+        if (!n.isWalkable) {
+            label.color = walkableBlockedColor;
+        } else if (n.isPath) {
+            label.color = pathColor;
+        } else if (!n.isPlaceable) {
+            label.color = structureBlockedColor;
+        } else if (n.isExplored) {
+            label.color = exploredColor;
         } else {
-            label.color = blockedColor;
+            label.color = defaultColor;
         }
     }
 }
