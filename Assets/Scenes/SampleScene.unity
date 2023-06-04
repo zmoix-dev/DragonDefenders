@@ -2036,8 +2036,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &55029241
@@ -2510,8 +2510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &63584137
@@ -3702,8 +3702,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &107102697
@@ -6263,8 +6263,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &156843347
@@ -8888,8 +8888,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &228955437
@@ -16069,8 +16069,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &422345067
@@ -23738,8 +23738,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &659523784
@@ -31608,8 +31608,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &867410296
@@ -36353,6 +36353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1012999557}
   - component: {fileID: 1012999556}
+  - component: {fileID: 1012999558}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Enemies
@@ -36390,6 +36391,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1012999558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012999555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37062581c36ad64cba72fd0c4508d3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCoordinates: {x: -4, y: 0}
+  destinationCoordinates: {x: 1, y: 7}
 --- !u!1001 &1013712473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47495,8 +47510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &1373887522
@@ -50659,8 +50674,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &1514785416
@@ -62827,8 +62842,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &1837408374
@@ -74111,8 +74126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &2088730683
