@@ -25,7 +25,7 @@ public class Tile : MonoBehaviour
     }
 
     void OnMouseDown() {
-        if (!gridManager) {
+        if (!gridManager || !pathfinder) {
             return;
         }
         Node self = gridManager.GetNode(coordinates);
