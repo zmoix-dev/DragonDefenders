@@ -18,8 +18,13 @@ public class Pathfinder : MonoBehaviour
     }
 
     void Start() {
+        GetNewPath();
+    }
+
+    public List<Node> GetNewPath() {
+        gridManager.ResetNodes();
         ExploreWorld();
-        BuildPath();
+        return BuildPath();
     }
 
     void ExploreWorld() {
@@ -57,5 +62,20 @@ public class Pathfinder : MonoBehaviour
         }
         path.Reverse();
         return path;
+    }
+
+    public bool WillBlockPath(Vector2Int coordinates) {
+        if (gridManager.HasNode(coordinates)) {
+            Node node = gridManager.GetNode(coordinates);
+            bool previousWalkable = node.isWalkable;
+            node.isWalkable = false;
+            List<Node> newPath = GetNewPath();
+            node.isWalkable = previousWalkable;
+            if(newPath.Count <= 1) {
+                GetNewPath();
+                return true;
+            }
+        }
+        return false;
     }
 }

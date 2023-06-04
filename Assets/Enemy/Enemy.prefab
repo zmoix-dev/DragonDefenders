@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2401225801578736157}
   - component: {fileID: 6301667281270067360}
   - component: {fileID: 4470163508343820091}
-  - component: {fileID: 8288581564952022000}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -93,20 +92,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goldReward: 25
   goldPenalty: 25
---- !u!114 &8288581564952022000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2700877651126792282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d37062581c36ad64cba72fd0c4508d3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startCoordinates: {x: -4, y: 0}
-  destinationCoordinates: {x: 1, y: 7}
 --- !u!1001 &556274355111708229
 PrefabInstance:
   m_ObjectHideFlags: 0

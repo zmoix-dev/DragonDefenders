@@ -29,15 +29,23 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public void BlockWalkable(Vector2Int coordinates, string message) {
+    public void BlockWalkable(Vector2Int coordinates) {
         if (grid.ContainsKey(coordinates)) {
             grid[coordinates].isWalkable = false;
         }
     }
 
-    public void BlockPlaceable(Vector2Int coordinates, string message) {
+    public void BlockPlaceable(Vector2Int coordinates) {
         if (grid.ContainsKey(coordinates)) {
             grid[coordinates].isPlaceable = false;
+        }
+    }
+
+    public void ResetNodes() {
+        foreach (Vector2Int node in grid.Keys) {
+            grid[node].isExplored = false;
+            grid[node].isPath = false;
+            grid[node].parent = null;
         }
     }
 

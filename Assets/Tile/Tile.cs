@@ -8,26 +8,32 @@ public class Tile : MonoBehaviour
     [SerializeField] bool isPlaceable;
 
     GridManager gridManager;
+    Pathfinder pathfinder;
     Vector2Int coordinates;
     void Awake() {
         gridManager = FindObjectOfType<GridManager>();
+        pathfinder = FindObjectOfType<Pathfinder>();
     }
    
     void Start() {
         if (gridManager != null) {
             coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
             if (!isPlaceable) {
-                gridManager.BlockPlaceable(coordinates, $"Tile.Start({coordinates.ToString()})");
+                gridManager.BlockPlaceable(coordinates);
             }
         }
     }
 
     void OnMouseDown() {
+        if (!gridManager) {
+            return;
+        }
         Node self = gridManager.GetNode(coordinates);
-        if (self != null && self.isPlaceable) {
+        if (self != null && self.isPlaceable && !pathfinder.WillBlockPath(coordinates)) {
             bool wasPlaced = tower.PlaceTower(tower, transform.position);
             if (wasPlaced) {
-                gridManager.BlockPlaceable(coordinates, "Tile.OnMouseDown");
+                gridManager.BlockPlaceable(coordinates);
+                gridManager.BlockWalkable(coordinates);
             }
         }
     }
