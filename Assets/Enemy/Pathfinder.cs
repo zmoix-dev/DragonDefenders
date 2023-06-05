@@ -9,20 +9,18 @@ public class Pathfinder : MonoBehaviour
     [SerializeField] Vector2Int destinationCoordinates;
     public Vector2Int DestinationCoordinates { get { return destinationCoordinates; }}
     Node startNode;
+    Node startNode2;
     Node destinationNode;
     Vector2Int[] directions = { Vector2Int.right, Vector2Int.down, Vector2Int.left, Vector2Int.up };
     
     GridManager gridManager;
+    Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
+
     void Awake() {
         gridManager = FindObjectOfType<GridManager>();
-        startNode = new Node(startCoordinates, true);
-        destinationNode = new Node(destinationCoordinates, true);
-        //startNode = gridManager.GetNode(startCoordinates);
-        //destinationNode = gridManager.GetNode(destinationCoordinates);
-    }
-
-    void Start() {
-        GetNewPath();
+        grid = gridManager.Grid;
+        startNode = grid[startCoordinates];
+        destinationNode = grid[destinationCoordinates];
     }
 
     public List<Node> GetNewPath() {
@@ -32,18 +30,19 @@ public class Pathfinder : MonoBehaviour
     }
 
     void ExploreWorld() {
+        if (gridManager == null) {
+            Debug.Log("No GridManager defined in Pathfinder:ExploreWorld().");
+            return;
+        }
         Queue<Node> nodes = new Queue<Node>();
+        startNode.isExplored = true;
         nodes.Enqueue(startNode);
-        bool destinationFound = false;
-        int nodesExplored = 0;
+
         while(nodes.Count > 0) {
-            nodesExplored++;
             if (ExploreNeighbors(nodes.Dequeue(), nodes)) {
-                destinationFound = true;
                 break;
             }
         }
-        Debug.Log(nodesExplored + ", " + destinationFound);
     }
 
     bool ExploreNeighbors(Node start, Queue<Node> nodes) {

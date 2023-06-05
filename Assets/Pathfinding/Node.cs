@@ -17,9 +17,4 @@ public class Node
         this.isWalkable = isWalkable;
         this.isPlaceable = true;
     }
-
-    
-    override public string ToString() {
-        return $"{coordinates.ToString()}, {isWalkable}, {isPlaceable}, {isExplored}, {isPath}";
-    }
 }
