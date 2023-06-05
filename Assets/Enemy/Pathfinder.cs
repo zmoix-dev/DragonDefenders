@@ -17,6 +17,8 @@ public class Pathfinder : MonoBehaviour
         gridManager = FindObjectOfType<GridManager>();
         startNode = new Node(startCoordinates, true);
         destinationNode = new Node(destinationCoordinates, true);
+        //startNode = gridManager.GetNode(startCoordinates);
+        //destinationNode = gridManager.GetNode(destinationCoordinates);
     }
 
     void Start() {
@@ -32,22 +34,31 @@ public class Pathfinder : MonoBehaviour
     void ExploreWorld() {
         Queue<Node> nodes = new Queue<Node>();
         nodes.Enqueue(startNode);
-       
+        bool destinationFound = false;
+        int nodesExplored = 0;
         while(nodes.Count > 0) {
-            ExploreNeighbors(nodes.Dequeue(), nodes);
+            nodesExplored++;
+            if (ExploreNeighbors(nodes.Dequeue(), nodes)) {
+                destinationFound = true;
+                break;
+            }
         }
-
+        Debug.Log(nodesExplored + ", " + destinationFound);
     }
 
-    void ExploreNeighbors(Node start, Queue<Node> nodes) {
+    bool ExploreNeighbors(Node start, Queue<Node> nodes) {
         foreach (Vector2Int direction in directions) {
             Node n = gridManager.GetNode(start.coordinates + direction);
             if (n != null && n.isWalkable && !n.isExplored) {
                 n.isExplored = true;
                 n.parent = start;
                 nodes.Enqueue(n);
+                if (n.coordinates == destinationCoordinates) {
+                    return true;
+                }
             }
         }
+        return false;
     }
 
     List<Node> BuildPath() {

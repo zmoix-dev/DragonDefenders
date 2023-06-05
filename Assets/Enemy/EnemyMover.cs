@@ -24,7 +24,6 @@ public class EnemyMover : MonoBehaviour
         handler = FindObjectOfType<EnemyHandler>();
         gridManager = FindObjectOfType<GridManager>();
         pathfinder = FindObjectOfType<Pathfinder>();
-        Debug.Log($"Pathfinder: {pathfinder}");
     }
 
     void ReturnToStart() {
@@ -36,7 +35,6 @@ public class EnemyMover : MonoBehaviour
 
     void FindPath() {
         path.Clear();
-        Debug.Log($"Pathfinder: {pathfinder}");
         path = pathfinder.GetNewPath();
     }
 
