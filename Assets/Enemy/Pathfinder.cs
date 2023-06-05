@@ -9,7 +9,6 @@ public class Pathfinder : MonoBehaviour
     [SerializeField] Vector2Int destinationCoordinates;
     public Vector2Int DestinationCoordinates { get { return destinationCoordinates; }}
     Node startNode;
-    Node startNode2;
     Node destinationNode;
     Vector2Int[] directions = { Vector2Int.right, Vector2Int.down, Vector2Int.left, Vector2Int.up };
     
@@ -18,25 +17,27 @@ public class Pathfinder : MonoBehaviour
 
     void Awake() {
         gridManager = FindObjectOfType<GridManager>();
-        grid = gridManager.Grid;
-        startNode = grid[startCoordinates];
-        destinationNode = grid[destinationCoordinates];
+        if (gridManager != null) {
+            grid = gridManager.Grid;
+            startNode = grid[startCoordinates];
+            destinationNode = grid[destinationCoordinates];
+        }
     }
 
-    public List<Node> GetNewPath() {
+    public List<Node> CalculatePath() {
+        return CalculatePath(startCoordinates);
+    }
+
+    public List<Node> CalculatePath(Vector2Int from) {
         gridManager.ResetNodes();
-        ExploreWorld();
+        ExploreWorld(gridManager.GetNode(from));
         return BuildPath();
     }
 
-    void ExploreWorld() {
-        if (gridManager == null) {
-            Debug.Log("No GridManager defined in Pathfinder:ExploreWorld().");
-            return;
-        }
+    void ExploreWorld(Node from) {
         Queue<Node> nodes = new Queue<Node>();
-        startNode.isExplored = true;
-        nodes.Enqueue(startNode);
+        from.isExplored = true;
+        nodes.Enqueue(from);
 
         while(nodes.Count > 0) {
             if (ExploreNeighbors(nodes.Dequeue(), nodes)) {
@@ -81,13 +82,17 @@ public class Pathfinder : MonoBehaviour
             Node node = gridManager.GetNode(coordinates);
             bool previousWalkable = node.isWalkable;
             node.isWalkable = false;
-            List<Node> newPath = GetNewPath();
+            List<Node> newPath = CalculatePath();
             node.isWalkable = previousWalkable;
             if(newPath.Count <= 1) {
-                GetNewPath();
+                CalculatePath();
                 return true;
             }
         }
         return false;
+    }
+
+    public void NotifyListeners() {
+        BroadcastMessage("GetPath", SendMessageOptions.DontRequireReceiver);
     }
 }

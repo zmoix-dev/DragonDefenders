@@ -34,6 +34,7 @@ public class Tile : MonoBehaviour
             if (wasPlaced) {
                 gridManager.BlockPlaceable(coordinates);
                 gridManager.BlockWalkable(coordinates);
+                pathfinder.NotifyListeners();
             }
         }
     }

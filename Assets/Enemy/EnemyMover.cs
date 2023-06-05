@@ -17,7 +17,7 @@ public class EnemyMover : MonoBehaviour
     void OnEnable()
     {
         ReturnToStart();
-        FindPath();
+        GetPath();
     }
 
     void Awake() {
@@ -30,10 +30,10 @@ public class EnemyMover : MonoBehaviour
         transform.position = gridManager.GetPositionFromCoordinates(pathfinder.StartCoordinates);
     }
 
-    void FindPath() {
+    void GetPath() {
         StopAllCoroutines();
         path.Clear();
-        path = pathfinder.GetNewPath();
+        path = pathfinder.CalculatePath(gridManager.GetCoordinatesFromPosition(transform.position));
         StartCoroutine(TraversePath());
     }
 
