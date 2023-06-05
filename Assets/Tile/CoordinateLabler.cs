@@ -64,10 +64,10 @@ public class CoordinateLabler : MonoBehaviour
         if (n == null) {
             return;
         }
-        if (!n.isWalkable) {
-            label.color = walkableBlockedColor;
-        } else if (n.isPath) {
+        if (n.isPath) {
             label.color = pathColor;
+        } else if (!n.isWalkable) {
+            label.color = walkableBlockedColor;
         } else if (!n.isPlaceable) {
             label.color = structureBlockedColor;
         } else if (n.isExplored) {
