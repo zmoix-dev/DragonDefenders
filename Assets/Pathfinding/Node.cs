@@ -10,6 +10,8 @@ public class Node
     public bool isPlaceable;
     public bool isExplored;
     public bool isPath;
+    public int weight;
+    public int speed;
     public Node parent;
 
     public Node(Vector2Int coordinates, bool isWalkable) {
