@@ -9,12 +9,18 @@ public class TowerTargeting : MonoBehaviour
     [SerializeField] float range = 15f;
     [SerializeField] Transform target;
 
+    AudioSource sfx;
+    TowerHandler towerHandler;
     void Start() {
         target = GameObject.FindObjectOfType<EnemyHandler>().transform;
+        towerHandler = GetComponent<TowerHandler>();
+        sfx = GetComponent<AudioSource>();
     }
     void Update() {
-        ProcessTargeting();
-        ProcessAttack();
+        if (towerHandler.IsReady) {
+            ProcessTargeting();
+            ProcessAttack();
+        }
     }
 
     void ProcessTargeting() {
@@ -56,12 +62,18 @@ public class TowerTargeting : MonoBehaviour
     void Attack() {
         Vector3 targetAdjustedHeight = target.position + new Vector3(0, target.localScale.y / 2, 0);
         weapon.LookAt(targetAdjustedHeight);
+        if (!sfx.isPlaying) {
+            sfx.Play();
+        }
         if (!projectiles.isEmitting) {
             projectiles.Play();
         }
     }
 
     void Disengage() {
+        if (sfx.isPlaying) {
+            sfx.Stop();
+        }
         if (projectiles.isEmitting) {
             projectiles.Stop();
         }

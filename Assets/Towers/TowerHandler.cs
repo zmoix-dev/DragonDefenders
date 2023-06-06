@@ -10,6 +10,9 @@ public class TowerHandler : MonoBehaviour
     GameObject structuresParent;
     Bank bank;
 
+    bool isReady = false;
+    public bool IsReady { get { return isReady; }}
+
     void Start() {
         StartCoroutine(Build());
     }
@@ -42,5 +45,6 @@ public class TowerHandler : MonoBehaviour
                 grandchild.gameObject.SetActive(true);
             }
         }
+        isReady = true;
     }
 }
