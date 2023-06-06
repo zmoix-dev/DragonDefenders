@@ -60,6 +60,10 @@ PrefabInstance:
       value: Tile_Road
       objectReference: {fileID: 0}
     - target: {fileID: 8820516373292417164, guid: 67f5200b4a06f8e4692b1e5259fdd5fb, type: 3}
+      propertyPath: isWalkable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820516373292417164, guid: 67f5200b4a06f8e4692b1e5259fdd5fb, type: 3}
       propertyPath: isPlaceable
       value: 0
       objectReference: {fileID: 0}

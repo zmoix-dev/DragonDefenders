@@ -5,16 +5,19 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     [SerializeField] TowerHandler tower;
-    [SerializeField] bool isPlaceable;
+    [SerializeField] bool isPlaceable = true;
+    [SerializeField] bool isWalkable = true;
     [SerializeField] int startingWeight;
     [SerializeField] float timeToTraverse;
 
     GridManager gridManager;
     Pathfinder pathfinder;
     Vector2Int coordinates;
+    ParticleSystem hoverIndicator;
     void Awake() {
         gridManager = FindObjectOfType<GridManager>();
         pathfinder = FindObjectOfType<Pathfinder>();
+        hoverIndicator = GetComponentInChildren<ParticleSystem>();
     }
    
     void Start() {
@@ -25,10 +28,15 @@ public class Tile : MonoBehaviour
             if (!isPlaceable) {
                 gridManager.BlockPlaceable(coordinates);
             }
+            if (!isWalkable) {
+                gridManager.BlockWalkable(coordinates);
+            }
         }
     }
 
     void OnMouseDown() {
+        
+        hoverIndicator.Play();
         if (!gridManager || !pathfinder) {
             return;
         }
@@ -40,6 +48,18 @@ public class Tile : MonoBehaviour
                 gridManager.BlockWalkable(coordinates);
                 pathfinder.NotifyListeners();
             }
+        }
+    }
+
+    void OnMouseOver() {
+        if(isPlaceable) {
+            hoverIndicator.Play();
+        }
+    }
+
+    void OnMouseExit() {
+        if (hoverIndicator.isEmitting) {
+            hoverIndicator.Stop();
         }
     }
 }
