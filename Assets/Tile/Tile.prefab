@@ -239,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: -8366205531921641964, guid: cd3a44e94cf00774b8a17261284358b3, type: 3}
   isPlaceable: 1
-  startingWeight: 4
+  startingWeight: 5
   timeToTraverse: 2
 --- !u!65 &7971161699095581275
 BoxCollider:

@@ -10,7 +10,6 @@ public class Pathfinder : MonoBehaviour
     public Vector2Int DestinationCoordinates { get { return destinationCoordinates; }}
     Node startNode;
     Node destinationNode;
-    Vector2Int[] directions = { Vector2Int.right, Vector2Int.down, Vector2Int.left, Vector2Int.up };
     
     GridManager gridManager;
     Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
@@ -47,7 +46,7 @@ public class Pathfinder : MonoBehaviour
     }
 
     bool Explore_BFS(Node start, Queue<Node> nodes) {
-        foreach (Vector2Int direction in directions) {
+        foreach (Vector2Int direction in Direction.Cardinals) {
             Node n = gridManager.GetNode(start.coordinates + direction);
             if (n != null && n.isWalkable && !n.isExplored) {
                 n.isExplored = true;
@@ -76,7 +75,7 @@ public class Pathfinder : MonoBehaviour
     }
 
     bool ExploreNeighbors_AStar(Node start, List<WeightedNode> nodes, Dictionary<Node, int> discoveredNodes) {
-        foreach(Vector2Int direction in directions) {
+        foreach(Vector2Int direction in Direction.Cardinals) {
             Node n = gridManager.GetNode(start.coordinates + direction);
             
             if (n != null && n.isWalkable) {

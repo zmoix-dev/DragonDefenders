@@ -84,6 +84,15 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    public bool IncrementNodeWeight(Vector2Int coordinates) {
+        if (grid.ContainsKey(coordinates)) {
+            grid[coordinates].weight++;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public bool SetNodeTraversalTime(Vector2Int coordinates, float time) {
         if (grid.ContainsKey(coordinates)) {
             grid[coordinates].timeToTraverse = time;

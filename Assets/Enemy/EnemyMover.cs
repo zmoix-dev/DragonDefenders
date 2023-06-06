@@ -41,10 +41,13 @@ public class EnemyMover : MonoBehaviour
         foreach (Node node in path) {
             Vector3 startPosition = transform.position;
             Vector3 endPosition = gridManager.GetPositionFromCoordinates(node.coordinates);
+            float timeToTraverseStart = gridManager.GetNode(gridManager.GetCoordinatesFromPosition(transform.position)).timeToTraverse;
+            float timeToTraverseEnd = gridManager.GetNode(node.coordinates).timeToTraverse;
             float travelPercent = 0f;
 
+
             while(travelPercent <= 1f) {
-                travelPercent += Time.deltaTime * speed;
+                travelPercent += Time.deltaTime * speed / ((timeToTraverseStart + timeToTraverseEnd) / 2);
                 transform.LookAt(endPosition);
                 transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
                 yield return new WaitForEndOfFrame();

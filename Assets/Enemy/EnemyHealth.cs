@@ -12,13 +12,15 @@ public class EnemyHealth : MonoBehaviour
     int currentHitPoints;
 
     EnemyHandler handler;
+    GridManager gridManager;
+
+    void Awake() {
+        handler = FindObjectOfType<EnemyHandler>();
+        gridManager = FindObjectOfType<GridManager>();
+    }
 
     void OnEnable() {
         currentHitPoints = maxHitPoints;
-    }
-
-    void Start() {
-        handler = FindObjectOfType<EnemyHandler>();
     }
 
     void OnParticleCollision(GameObject other) {
@@ -35,6 +37,15 @@ public class EnemyHealth : MonoBehaviour
             gameObject.SetActive(false);
             handler.AwardGold();
             maxHitPoints += scalingHitPoints;
+            IncreaseLocationDanger();
         }
+    }
+
+    void IncreaseLocationDanger() {
+        Vector2Int coords = gridManager.GetCoordinatesFromPosition(transform.position);
+        gridManager.IncrementNodeWeight(coords);
+        // foreach (Vector2Int direction in Direction.Ordinals) {
+        //     gridManager.IncrementNodeWeight(coords + direction);
+        // }
     }
 }
