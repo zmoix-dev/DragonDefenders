@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1016641197448444282, guid: 62596a22737626d448122a227e094202, type: 3}
+      propertyPath: startingWeight
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016641197448444282, guid: 62596a22737626d448122a227e094202, type: 3}
+      propertyPath: timeToTraverse
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2854989362516916619, guid: 62596a22737626d448122a227e094202, type: 3}
       propertyPath: m_Name
       value: Tile_Water_Edge_Outer

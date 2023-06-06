@@ -7,7 +7,7 @@ public class Tile : MonoBehaviour
     [SerializeField] TowerHandler tower;
     [SerializeField] bool isPlaceable;
     [SerializeField] int startingWeight;
-    [SerializeField] int traversalSpeed;
+    [SerializeField] float timeToTraverse;
 
     GridManager gridManager;
     Pathfinder pathfinder;
@@ -20,8 +20,8 @@ public class Tile : MonoBehaviour
     void Start() {
         if (gridManager != null) {
             coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
-            gridManager.GetNode(coordinates).weight = startingWeight;
-            gridManager.GetNode(coordinates).speed = traversalSpeed;
+            gridManager.SetNodeWeight(coordinates, startingWeight);
+            gridManager.SetNodeTraversalTime(coordinates, timeToTraverse);
             if (!isPlaceable) {
                 gridManager.BlockPlaceable(coordinates);
             }

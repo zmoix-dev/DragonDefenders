@@ -20,8 +20,8 @@ public class GridManager : MonoBehaviour
 
     void CreateGrid() {
         
-        for (int x = adjustedOrigin.x; x < gridSize.x - adjustedOrigin.x; x++) {
-            for (int y = adjustedOrigin.y; y < gridSize.y - adjustedOrigin.y; y++) {
+        for (int x = adjustedOrigin.x; x <= gridSize.x - adjustedOrigin.x; x++) {
+            for (int y = adjustedOrigin.y; y <= gridSize.y - adjustedOrigin.y; y++) {
                 Vector2Int currCoords = new Vector2Int(x, y);
                 Node n = new Node(currCoords, true);
                 grid.Add(currCoords, n);
@@ -63,9 +63,9 @@ public class GridManager : MonoBehaviour
         return position;
     }
 
-    public Node GetNode(Vector2Int coordiantes) {
-        if (grid.ContainsKey(coordiantes)) {
-            return grid[coordiantes];
+    public Node GetNode(Vector2Int coordinates) {
+        if (grid.ContainsKey(coordinates)) {
+            return grid[coordinates];
         } else {
             return null;
         }
@@ -73,5 +73,23 @@ public class GridManager : MonoBehaviour
 
     public bool HasNode(Vector2Int coordinates) {
         return grid.ContainsKey(coordinates);
+    }
+
+    public bool SetNodeWeight(Vector2Int coordinates, int weight) {
+        if (grid.ContainsKey(coordinates)) {
+            grid[coordinates].weight = weight;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public bool SetNodeTraversalTime(Vector2Int coordinates, float time) {
+        if (grid.ContainsKey(coordinates)) {
+            grid[coordinates].timeToTraverse = time;
+            return true;
+        } else {
+            return false;
+        }
     }
 }

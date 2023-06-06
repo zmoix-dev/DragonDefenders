@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  structureBlocked: {r: 0, g: 0, b: 0, a: 1}
+  walkableBlockedColor: {r: 1, g: 0, b: 0, a: 1}
+  structureBlockedColor: {r: 0, g: 0, b: 0, a: 1}
   pathColor: {r: 0, g: 0, b: 1, a: 1}
   exploredColor: {r: 1, g: 0.5, b: 0, a: 1}
 --- !u!1 &6047741191254655101
@@ -239,6 +239,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: -8366205531921641964, guid: cd3a44e94cf00774b8a17261284358b3, type: 3}
   isPlaceable: 1
+  startingWeight: 4
+  timeToTraverse: 2
 --- !u!65 &7971161699095581275
 BoxCollider:
   m_ObjectHideFlags: 0

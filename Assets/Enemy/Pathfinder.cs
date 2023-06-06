@@ -30,7 +30,7 @@ public class Pathfinder : MonoBehaviour
 
     public List<Node> CalculatePath(Vector2Int from) {
         gridManager.ResetNodes();
-        ExploreWorld(gridManager.GetNode(from));
+        Explore_AStar(gridManager.GetNode(from));
         return BuildPath();
     }
 
@@ -40,13 +40,13 @@ public class Pathfinder : MonoBehaviour
         nodes.Enqueue(from);
 
         while(nodes.Count > 0) {
-            if (ExploreNeighbors(nodes.Dequeue(), nodes)) {
+            if (Explore_BFS(nodes.Dequeue(), nodes)) {
                 break;
             }
         }
     }
 
-    bool ExploreNeighbors(Node start, Queue<Node> nodes) {
+    bool Explore_BFS(Node start, Queue<Node> nodes) {
         foreach (Vector2Int direction in directions) {
             Node n = gridManager.GetNode(start.coordinates + direction);
             if (n != null && n.isWalkable && !n.isExplored) {
@@ -58,6 +58,51 @@ public class Pathfinder : MonoBehaviour
                 }
             }
         }
+        return false;
+    }
+
+    bool Explore_AStar(Node start) {
+        List<WeightedNode> nodes = new List<WeightedNode>();
+        Dictionary<Node, int> discoveredNodes = new Dictionary<Node, int>();
+        nodes.Add(new WeightedNode(start, 0, 0));
+        discoveredNodes.Add(start, 0);
+        bool destinationFound = false;
+        while(nodes.Count > 0 && !destinationFound) {
+            WeightedNode next = nodes[0];
+            nodes.RemoveAt(0);
+            destinationFound = ExploreNeighbors_AStar(next.Node, nodes, discoveredNodes);
+        }
+        return false;
+    }
+
+    bool ExploreNeighbors_AStar(Node start, List<WeightedNode> nodes, Dictionary<Node, int> discoveredNodes) {
+        foreach(Vector2Int direction in directions) {
+            Node n = gridManager.GetNode(start.coordinates + direction);
+            
+            if (n != null && n.isWalkable) {
+                n.isExplored = true;
+                if (n.coordinates.Equals(destinationCoordinates)) {
+                    n.parent = start;
+                    return true;
+                }
+                int edgeWeight = n.weight;
+                int parentPathWeight = discoveredNodes[start];
+                int totalPathWeight = edgeWeight + parentPathWeight;
+                int heuristicDistance = Mathf.Abs(n.coordinates.x - destinationCoordinates.x) + Mathf.Abs(n.coordinates.y - destinationCoordinates.y);
+                int heurWeight = heuristicDistance + totalPathWeight;
+
+                // if node hasn't been explored, or current path is cheaper
+                if (discoveredNodes.ContainsKey(n) && discoveredNodes[n] > totalPathWeight) {     
+                    discoveredNodes[n] = totalPathWeight;
+                    n.parent = start;
+                } else if (!discoveredNodes.ContainsKey(n)) {
+                    discoveredNodes.Add(n, totalPathWeight);   
+                    nodes.Add(new WeightedNode(n, totalPathWeight, heurWeight));      
+                    n.parent = start;             
+                }
+            }
+        }
+        nodes.Sort(new WeightedNodeComparer());
         return false;
     }
 

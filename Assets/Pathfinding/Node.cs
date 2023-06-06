@@ -11,12 +11,17 @@ public class Node
     public bool isExplored;
     public bool isPath;
     public int weight;
-    public int speed;
+    public float timeToTraverse;
     public Node parent;
 
     public Node(Vector2Int coordinates, bool isWalkable) {
         this.coordinates = coordinates;
         this.isWalkable = isWalkable;
         this.isPlaceable = true;
+    }
+
+    public override string ToString()
+    {
+        return $"Node({coordinates.ToString()})";
     }
 }
